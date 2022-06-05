@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div *ngIf="loaded" class="container">
+  <form class="example-form">
+    <mat-form-field appearance="fill">
+        <mat-label>Digite o nome do Browser Game: </mat-label>
+        <input matInput maxlength="50" [(ngModel)]="nome" name="nome" required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Selecione a categoria: </mat-label>
+        <mat-select  [(ngModel)]="selectedCategoria" name="categoria" > 
+            <mat-option value="Todas"  color="Red" >Todas</mat-option>
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria.id" > {{categoria.nome}} </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <button mat-button   (click)="filter()" >Filtrar</button>
+  </form>
+  <p>
+    {{browserGamesSize}} Browser Games encontrados !
+</p>
+<mat-grid-list [cols]="breakpoint" rowHeight="31em" (window:resize)="onResize($event)" gutterSize="15px">
+  <mat-grid-tile *ngFor="let browserGame of browserGames">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <!--<div mat-card-avatar class="example-header-image"> <img mat-card-image src="{{browserGame.urlImagem}}"
+            alt="{{browserGame.nome}}">
+        </div> -->
+        <mat-card-title>{{browserGame.nome}}
+            
+        </mat-card-title>
+        <mat-card-subtitle>{{browserGame.categoria.nome}}</mat-card-subtitle>
+      </mat-card-header>
+      <img  mat-card-image src="{{browserGame.urlImagem}}" alt="{{browserGame.nome}}">
+      <mat-card-content>
+        <mat-star-rating  [rating]="browserGame.avgEstrelas"  [starCount]="starCount" [color]="starColor"></mat-star-rating> <p> ({{browserGame.qtdAvaliacoes}})</p>
+        <p>
+          {{browserGame.descricao}}
+        </p>
+      </mat-card-content>
+      <mat-card-footer>Na OBG desde {{browserGame.dataCriacao}}</mat-card-footer>
+      <mat-card-actions>
+        <button mat-button  color="Red" ><a href="{{browserGame.urlJogo}}">Jogar</a></button>
+        <button mat-button  color="Red" ><a routerLink="/browserGame/{{browserGame.id}}" >Ver Detalhes</a></button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<app-recomendacao ></app-recomendacao>
+</div>
+
+<div class="loader" *ngIf="!loaded">
+  <img src="../../../assets/images/loading.gif">
+</div>
+

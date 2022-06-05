@@ -1,0 +1,24 @@
+<p>
+    <mat-toolbar  color="Red" >
+
+      
+
+      <mat-menu #menu="matMenu">
+        <a routerLink="/home" mat-menu-item>Home</a>
+        <a *ngIf="isAdmin" routerLink="/browserGame" mat-menu-item>Browser Games</a>
+        <a *ngIf="isAdmin" routerLink="/categoria" mat-menu-item>Categorias</a>
+        <a *ngIf="isAdmin" routerLink="/relatorio" mat-menu-item>Relatórios</a>
+        <a routerLink="/profile" mat-menu-item>Meu Perfil</a>
+        <a (click)="logout()"  mat-menu-item>Sair</a>
+      </mat-menu>
+
+      <span class="title" mat-menu>Good Browser Games</span>
+
+      <span class="example-spacer"></span>
+
+      <button mat-icon-button *ngIf="isUserLoggedIn" [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+    </mat-toolbar>
+</p>
