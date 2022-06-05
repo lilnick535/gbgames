@@ -44,7 +44,9 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
-<app-recomendacao ></app-recomendacao>
+<mat-drawer #drawer mode="push"><app-recomendacao ></app-recomendacao></mat-drawer>
+<button mat-raised-button (click)="drawer.toggle()">Ver Recomendações</button>
+
 </div>
 
 <div class="loader" *ngIf="!loaded">

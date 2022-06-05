@@ -41,6 +41,7 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { RecomendacaoComponent } from './views/recomendacao/recomendacao.component';
 import { RelatorioComponent } from './views/relatorio/relatorio.component';
 import { ResetPasswordComponent } from './account/reset-password/reset-password.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ResetPasswordComponent } from './account/reset-password/reset-password.
     MatNativeDateModule,
     MatGridListModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSidenavModule
     
   ],
   providers: [
